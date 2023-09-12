@@ -7,18 +7,22 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ListarNotasComponent } from './components/notas/listar-notas/listar-notas.component';
 import { CardNotaComponent } from './components/notas/card-nota/card-nota.component';
+import { CriarNotaComponent } from './components/notas/criar-nota/criar-nota.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ListarNotasComponent,
-    CardNotaComponent
+    CardNotaComponent,
+    CriarNotaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
