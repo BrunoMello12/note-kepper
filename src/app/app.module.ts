@@ -9,6 +9,9 @@ import { ListarNotasComponent } from './components/notas/listar-notas/listar-not
 import { CardNotaComponent } from './components/notas/card-nota/card-nota.component';
 import { CriarNotaComponent } from './components/notas/criar-nota/criar-nota.component';
 import { FormsModule } from '@angular/forms';
+import { EditarNotaComponent } from './components/notas/editar-nota/editar-nota.component';
+import { ExcluirNotaComponent } from './components/notas/excluir-nota/excluir-nota.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,19 @@ import { FormsModule } from '@angular/forms';
     ListarNotasComponent,
     CardNotaComponent,
     CriarNotaComponent,
+    EditarNotaComponent,
+    ExcluirNotaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

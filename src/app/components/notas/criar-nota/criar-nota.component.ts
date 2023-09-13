@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Nota } from '../nota';
 import { NotaService } from '../nota.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-criar-nota',
@@ -11,17 +12,19 @@ import { Router } from '@angular/router';
 export class CriarNotaComponent {
   nota: Nota;
 
-  constructor(private notaService: NotaService, private router: Router) {
-    this.nota = new Nota(
-      'Lavar o cachorro 🦮',
-      'Pegar a toalha > pegar o shampoo',
-      'dark',
-      0
-    );
+  constructor(
+  private notaService: NotaService,
+  private router: Router,
+  private toastService: ToastrService
+   ) {
+    this.nota = new Nota('','','dark',0);
   }
 
   criarNota(){
     this.notaService.criar(this.nota);
-    this.router.navigate(['/notas', 'listar'])
+
+    this.toastService.success('Nota criada com sucesso.', 'Sucesso');
+
+    this.router.navigate(['/notas', 'listar']);
   }
 }

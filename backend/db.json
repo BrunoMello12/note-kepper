@@ -1,0 +1,28 @@
+{
+  "notas": [
+    {
+      "id": 1,
+      "titulo": "Lavar o cachorro 🦮",
+      "conteudo": "Pegar o shampoo > pegar a toalha",
+      "tema": "warning"
+    },
+    {
+      "id": 2,
+      "titulo": "Planejar as Aulas de Angular",
+      "conteudo": "Pesquisar material",
+      "tema": "info"
+    },
+    {
+      "id": 3,
+      "titulo": "Atualizar Aplicações Angular",
+      "conteudo": "Preparar projetos para as aulas",
+      "tema": "danger"
+    },
+    {
+      "titulo": "Teste do Inspmnia",
+      "conteudo": "Testando a rota POST",
+      "tema": "dark",
+      "id": 5
+    }
+  ]
+}

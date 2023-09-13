@@ -30,6 +30,28 @@ export class NotaService{
     nota.id = this.notas.length + 1;
 
     this.notas.push(nota);
+
+    return;
+  }
+
+  editar(nota: Nota){
+    const indexParaEditar = this.notas.findIndex(n => nota.id == nota.id);
+
+    this.notas[indexParaEditar] = nota;
+
+    return;
+  }
+
+  excluir(nota: Nota) {
+    const indexParaExcluir = this.notas.findIndex(n => nota.id == nota.id);
+
+    this.notas.splice(indexParaExcluir, 1);
+
+    return;
+  }
+
+  selecionarPorId(id: number): Nota | undefined{
+    return this.notas.find((nota) => nota.id == id);
   }
 
   selecionarTodos(): Nota[]{
