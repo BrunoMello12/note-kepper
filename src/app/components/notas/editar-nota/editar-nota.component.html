@@ -6,7 +6,7 @@
       Você pode editar com facilidade todas as informações das suas notas.
     </h2>
 
-    <form class="d-grid gap-3">
+    <form class="d-grid gap-3" (submit)="editarNota()">
       <div class="mb-3">
         <label for="titulo" class="form-label">{{ nota.titulo }}</label>
         <input [(ngModel)]="nota.titulo" type="text" class="form-control" id="titulo" name="titulo" />
@@ -82,7 +82,7 @@
       </div>
 
       <div class="d-flex gap-2 my-2 justify-content-end">
-        <button routerLink="/notas/listar" (submit)="editarNota()" type="submit" class="btn btn-primary px-5">Salvar</button>
+        <button type="submit" class="btn btn-primary px-5">Salvar</button>
         <button routerLink="/notas/listar" class="btn btn-outline-danger px-4">
           Cancelar
         </button>

@@ -3,6 +3,7 @@ import { Nota } from '../nota';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotaService } from '../nota.service';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-editar-nota',
@@ -23,14 +24,16 @@ export class EditarNotaComponent implements OnInit {
   ngOnInit(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!);
 
-    this.nota = this.notaService.selecionarPorId(id)!;
+    this.notaService.selecionarPorId(id)?.subscribe((nota) => {
+      this.nota = nota;
+    });
   }
 
   editarNota(){
-    this.notaService.editar(this.nota);
+    this.notaService.editar(this.nota).subscribe((nota) => {
+      this.toastService.success('Nota editada com sucesso.', 'Sucesso');
 
-    this.toastService.success('Nota editada com sucesso.', 'Sucesso');
-
-    this.router.navigate(['/notas', 'listar'])
+      this.router.navigate(['/notas', 'listar'])
+    });
   }
 }

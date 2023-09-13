@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { EditarNotaComponent } from './components/notas/editar-nota/editar-nota.component';
 import { ExcluirNotaComponent } from './components/notas/excluir-nota/excluir-nota.component';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,11 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-right',

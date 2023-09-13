@@ -1,60 +1,38 @@
 import { Injectable } from "@angular/core";
 import { Nota } from "./nota";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotaService{
-  notas: Nota[] = [
-    {
-    id: 0,
-    titulo: 'Lavar o cachorro 🦮',
-    conteudo: 'Pegar a toalha > Pegar o Shampoo',
-    tema: 'dark',
-  },
-  {
-    id: 1,
-    titulo: 'Prepara Aula',
-    conteudo: 'Prerparar Jamboard',
-    tema: 'warning',
-  },
-  {
-    id: 2,
-    titulo: 'AaAAAADAAAAAAAAAAAAAAAa',
-    conteudo: 'Testando os cards',
-    tema: 'danger',
-  },];
+  private API_URL = 'http://localhost:3000/notas';
+  ;
+  
+  constructor(private http: HttpClient) {}
 
   
   criar(nota: Nota) {
-    nota.id = this.notas.length + 1;
-
-    this.notas.push(nota);
-
-    return;
+    return this.http.post<Nota>(this.API_URL, nota);
   }
 
   editar(nota: Nota){
-    const indexParaEditar = this.notas.findIndex(n => nota.id == nota.id);
-
-    this.notas[indexParaEditar] = nota;
-
-    return;
+    const API_URL_EDICAO = `${this.API_URL}/${nota.id}`
+    return this.http.put<Nota>(API_URL_EDICAO, nota);
   }
 
   excluir(nota: Nota) {
-    const indexParaExcluir = this.notas.findIndex(n => nota.id == nota.id);
-
-    this.notas.splice(indexParaExcluir, 1);
-
-    return;
+    const API_URL_EXCLUSAO = `${this.API_URL}/${nota.id}`
+    return this.http.delete(API_URL_EXCLUSAO);
   }
 
-  selecionarPorId(id: number): Nota | undefined{
-    return this.notas.find((nota) => nota.id == id);
+  selecionarPorId(id: number): Observable<Nota> | undefined{
+    const API_URL_EDICAO = `${this.API_URL}/${id}`
+    return this.http.get<Nota>(API_URL_EDICAO);
   }
 
-  selecionarTodos(): Nota[]{
-    return this.notas;
+  selecionarTodos(): Observable<Nota[]>{
+    return this.http.get<Nota[]>(this.API_URL);
   }
 }

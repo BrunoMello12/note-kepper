@@ -1,16 +1,10 @@
 {
   "notas": [
     {
-      "id": 1,
-      "titulo": "Lavar o cachorro 🦮",
-      "conteudo": "Pegar o shampoo > pegar a toalha",
-      "tema": "warning"
-    },
-    {
       "id": 2,
-      "titulo": "Planejar as Aulas de Angular",
-      "conteudo": "Pesquisar material",
-      "tema": "info"
+      "titulo": "AAAAAAAAA",
+      "conteudo": "AAAAAAAAAAAAAAA",
+      "tema": "danger"
     },
     {
       "id": 3,
