@@ -3,6 +3,7 @@ import { NotaService } from '../nota.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Nota } from '../nota';
 import { ToastrService } from 'ngx-toastr';
+import { Categoria } from '../../categorias/categoria';
 
 @Component({
   selector: 'app-excluir-nota',

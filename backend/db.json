@@ -1,22 +1,29 @@
 {
-  "notas": [
+  "categorias": [
+    {
+      "id": 1,
+      "titulo": "Lazer"
+    },
     {
       "id": 2,
-      "titulo": "AAAAAAAAA",
-      "conteudo": "AAAAAAAAAAAAAAA",
-      "tema": "danger"
+      "titulo": "Jogos"
     },
     {
       "id": 3,
-      "titulo": "Atualizar Aplicações Angular",
-      "conteudo": "Preparar projetos para as aulas",
-      "tema": "danger"
-    },
+      "titulo": "Compra"
+    }
+  ],
+  "notas": [
     {
-      "titulo": "Teste do Inspmnia",
-      "conteudo": "Testando a rota POST",
-      "tema": "dark",
-      "id": 5
+      "titulo": "ifhjkifghj",
+      "conteudo": "fdgfdh",
+      "tema": "info",
+      "categoriaId": "2",
+      "categoria": {
+        "id": 2,
+        "titulo": "Jogos"
+      },
+      "id": 1
     }
   ]
 }

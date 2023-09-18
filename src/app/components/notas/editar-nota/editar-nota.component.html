@@ -22,6 +22,15 @@
         ></textarea>
       </div>
 
+      <div class="mb-3">
+        <label for="conteudo" class="form-label fs-5 fw-semibold"
+          >Categoria</label
+        >
+       <select [(ngModel)]="nota.categoriaId" (ngModelChange)="categoriaSelecionada($event)" class="form-select" name="categoriaId" id="">
+        <option [value]="categoria.id" *ngFor="let categoria of categorias">{{categoria.titulo}}</option>
+      </select>
+      </div>
+
       <label for="tema" class="form-label fs-5 fw-semibold">Tema</label>
       <div>
         <div class="form-check form-check-inline">

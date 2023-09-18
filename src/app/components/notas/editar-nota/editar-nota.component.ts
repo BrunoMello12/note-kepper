@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Nota } from '../nota';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotaService } from '../nota.service';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { Categoria } from '../../categorias/categoria';
+import { CategoriaService } from '../../categorias/categoria.service';
 
 @Component({
   selector: 'app-editar-nota',
@@ -12,14 +14,18 @@ import { Observable } from 'rxjs';
 })
 export class EditarNotaComponent implements OnInit {
   nota: Nota;
+  categorias: Categoria[] = [];
 
   constructor(
     private notaService: NotaService,
     private route: ActivatedRoute,
+    private categoriaService: CategoriaService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     private toastService: ToastrService)
   {
     this.nota = new Nota('','','dark',0);
+    this.selecionarTodasCategorias();
   }
   ngOnInit(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!);
@@ -27,6 +33,18 @@ export class EditarNotaComponent implements OnInit {
     this.notaService.selecionarPorId(id)?.subscribe((nota) => {
       this.nota = nota;
     });
+  }
+
+  selecionarTodasCategorias(){
+    this.categoriaService.selecionarTodos().subscribe((categorias) => {
+      this.categorias = categorias;
+    })
+  }
+
+  categoriaSelecionada(id: number){
+    this.nota.categoria = this.categorias.find(categoria => categoria.id == id);
+
+    this.cdr.markForCheck();
   }
 
   editarNota(){

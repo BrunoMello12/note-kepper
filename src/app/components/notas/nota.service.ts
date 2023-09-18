@@ -8,7 +8,6 @@ import { Observable } from "rxjs";
 })
 export class NotaService{
   private API_URL = 'http://localhost:3000/notas';
-  ;
   
   constructor(private http: HttpClient) {}
 
