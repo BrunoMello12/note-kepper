@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Categoria } from '../../categorias/categoria';
+import { CategoriaService } from '../../categorias/categoria.service';
 import { Nota } from '../nota';
 import { NotaService } from '../nota.service';
-import { CategoriaService } from '../../categorias/categoria.service';
-import { Categoria } from '../../categorias/categoria';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-listar-notas',
-  templateUrl: './listar-notas.component.html',
-  styleUrls: ['./listar-notas.component.css']
+  selector: 'app-listar-notas-arquivadas',
+  templateUrl: './listar-notas-arquivadas.component.html',
+  styleUrls: ['./listar-notas-arquivadas.component.css'],
 })
-export class ListarNotasComponent implements OnInit{
+export class ListarNotasArquivadasComponent {
   notas: Nota[] = [];
   categorias: Categoria[] = [];
 
@@ -20,7 +20,7 @@ export class ListarNotasComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    this.notaService.selecionarTodos()?.subscribe((notas) => {
+    this.notaService.selecionarNotasArquivadas()?.subscribe((notas) => {
       this.notas = notas;
     });
 
@@ -30,26 +30,26 @@ export class ListarNotasComponent implements OnInit{
   }
 
   selecionarTodas(): void {
-    this.notaService.selecionarTodos().subscribe((notas: Nota[]) => {
+    this.notaService.selecionarNotasArquivadas().subscribe((notas: Nota[]) => {
       this.notas = notas;
     });
   }
 
   selecionarNotasPorCategoria(categoria: Categoria): void{
-    this.notaService.selecionarNotasPorCategoria(categoria)
+    this.notaService.selecionarNotasArquivadasPorCategoria(categoria)
     .subscribe((notas) => {
       this.notas = notas;
     })
   }
 
-  arquivarNota(nota: Nota): void{
-    nota.arquivada = true;
+  reativarNota(nota: Nota): void{
+    nota.arquivada = false;
 
     this.notaService.editar(nota)
     .subscribe(() => {
-      this.toastService.success("Nota arquivada com sucesso!");
+      this.toastService.success("Nota reativada com sucesso!");
 
-      this.notaService.selecionarTodos()
+      this.notaService.selecionarNotasArquivadas()
       .subscribe((notas) => {
         this.notas = notas;
       });

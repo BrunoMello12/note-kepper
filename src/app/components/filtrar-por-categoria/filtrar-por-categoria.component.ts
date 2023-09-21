@@ -1,29 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { Nota } from '../notas/nota';
-import { NotaService } from '../notas/nota.service';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { Categoria } from '../categorias/categoria';
 
 @Component({
   selector: 'app-filtrar-por-categoria',
   templateUrl: './filtrar-por-categoria.component.html',
   styleUrls: ['./filtrar-por-categoria.component.css']
 })
-export class FiltrarPorCategoriaComponent implements OnInit {
-  notasFiltradas: Nota[] = [];
-  notas: Nota[] = [];
+export class FiltrarPorCategoriaComponent {
+  @Input({required: true}) categorias: Categoria[] = [];
 
-  constructor(private notaService: NotaService){}
-  ngOnInit(): void {
-    this.notaService.selecionarTodos()?.subscribe((notas) => {
-      this.notas = notas;
-    });
+  @Output() onFiltroSelecionado: EventEmitter<Categoria | null>;
+
+  constructor(){
+    this.onFiltroSelecionado = new EventEmitter();
   }
 
-  filtrarPorCategoria(titulo: string): void{
-    for(let nota of this.notas){
-      if(nota.categoria?.titulo == titulo){
-        this.notasFiltradas.push(nota);
-      }
-    }
+  selecionarTodas(): void{
+    this.onFiltroSelecionado.emit(null);
   }
-  
+
+  selecionarNotasPorCategoria(categoria: Categoria): void{
+    this.onFiltroSelecionado.emit(categoria);
+  }
 }

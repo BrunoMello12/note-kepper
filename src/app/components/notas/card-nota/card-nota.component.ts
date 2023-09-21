@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Nota } from '../nota';
-import { Categoria } from '../../categorias/categoria';
 
 @Component({
   selector: 'app-card-nota',
@@ -8,16 +7,16 @@ import { Categoria } from '../../categorias/categoria';
   styleUrls: ['./card-nota.component.css']
 })
 export class CardNotaComponent {
-  
+  @Input() nota: Nota;
+
+  @Output() onArquivarClicado: EventEmitter<Nota>;
+
   constructor(){
-    
+    this.nota = new Nota('','','dark',0)
+    this.onArquivarClicado = new EventEmitter();
   }
 
-  @Input() nota: Nota = {
-    id: 0,
-    titulo: 'Lavar o cachorro 🦮',
-    conteudo: 'Pegar a toalha > Pegar o Shampoo',
-    categoriaId: 0,
-    tema: 'dark',
-  };
+  arquivarNota(nota: Nota): void {
+    this.onArquivarClicado.emit(nota);
+  }
 }
